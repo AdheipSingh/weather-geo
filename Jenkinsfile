@@ -1,5 +1,6 @@
 
 node {
+     ecrRegistry = "https://133607893927.dkr.ecr.ap-southeast-1.amazonaws.com"
      def app 
       
      stage('Git')
@@ -14,18 +15,21 @@ node {
         sh 'rm  ~/.dockercfg || true'
         sh 'rm ~/.docker/config.json || true'
     }
-
-    stage('Build image') {
+     
+     stage ('Docker  configuration') {
+         sh 'aws ecr get-login --region us-east-1 | xargs xargs'
+     }
+     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-    
-        app = docker.build("133607893927.dkr.ecr.ap-southeast-1.amazonaws.com/istio:auth-servicev$BUILD_NUMBER")
+        docker.withRegistry("${ecrRegistry}") {
+        app = docker.build("${ecrRegistry}:auth-servicev$BUILD_NUMBER")
         sh 'pwd'
     }
 
      stage('Push image') {
         /* Finally, we'll push the image */
-        docker.withRegistry('https://133607893927.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:aws_ecr')  
+       // docker.withRegistry('https://133607893927.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:aws_ecr')  
           {
         app.push("${env.BUILD_NUMBER}")
             
