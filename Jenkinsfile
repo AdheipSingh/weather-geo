@@ -30,7 +30,7 @@ node {
      stage('Push image') {
         /* Finally, we'll push the image */
        // docker.withRegistry('https://133607893927.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:aws_ecr')  
-             
+        docker.withRegistry("${ecrRegistry}")     
         docker.push("${ecrRegistry}:auth-servicev$BUILD_NUMBER")
             
         }
