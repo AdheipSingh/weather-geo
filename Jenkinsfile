@@ -24,16 +24,17 @@ node {
          * docker build on the command line */
         docker.withRegistry("${ecrRegistry}") {
         docker.build("${ecrRegistry}:auth-servicev$BUILD_NUMBER")
+        docker.push("${ecrRegistry}:auth-servicev$BUILD_NUMBER")
         sh 'pwd'
     }
 
-     stage('Push image') {
+     //stage('Push image') {
         /* Finally, we'll push the image */
        // docker.withRegistry('https://133607893927.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:aws_ecr')  
-        docker.withRegistry("${ecrRegistry}")     
-        docker.push("${ecrRegistry}:auth-servicev$BUILD_NUMBER")
+       // docker.withRegistry("${ecrRegistry}")     
+        //docker.push("${ecrRegistry}:auth-servicev$BUILD_NUMBER")
             
-        }
+       // }
   }
   
 }
