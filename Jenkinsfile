@@ -23,7 +23,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
         docker.withRegistry("${ecrRegistry}") {
-        docker.build("${ecrRegistry}:auth-servicev$BUILD_NUMBER")
+        docker.build("${ecrRegistry}:auth-servicev$BUILD_NUMBER").push(env.BUILD_NUMBER)
         docker.push()
         sh 'pwd'
     }
