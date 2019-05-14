@@ -17,7 +17,7 @@ node {
     }
      
      stage ('Docker  configuration') {
-         sh 'aws ecr get-login --region us-east-1 | xargs xargs'
+         sh 'aws ecr get-login --region ap-southeast-1 | xargs'
      }
      stage('Build image') {
         /* This builds the actual image; synonymous to
