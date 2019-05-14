@@ -18,8 +18,8 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        sh 'whoami'
-        app = docker.build("133607893927.dkr.ecr.ap-southeast-1.amazonaws.com/istio:auth-servicev$BUILD_NUMBER")
+    
+        app = sudo  docker.build("133607893927.dkr.ecr.ap-southeast-1.amazonaws.com/istio:auth-servicev$BUILD_NUMBER")
         sh 'pwd'
     }
 
