@@ -1,6 +1,6 @@
 
 node {
-     ecrRegistry = "https://133607893927.dkr.ecr.ap-southeast-1.amazonaws.com"
+     ecrRegistry = "133607893927.dkr.ecr.ap-southeast-1.amazonaws.com"
      def app 
       
      stage('Git')
