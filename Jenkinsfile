@@ -1,7 +1,7 @@
 
 node {
      ecrRegistry = "133607893927.dkr.ecr.ap-southeast-1.amazonaws.com"
-     def app 
+      
       
      stage('Git')
      { 
@@ -23,15 +23,15 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
         docker.withRegistry("${ecrRegistry}") {
-        app = docker.build("${ecrRegistry}:auth-servicev$BUILD_NUMBER")
+        docker.build("${ecrRegistry}:auth-servicev$BUILD_NUMBER")
         sh 'pwd'
     }
 
      stage('Push image') {
         /* Finally, we'll push the image */
        // docker.withRegistry('https://133607893927.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:aws_ecr')  
-          
-        app.push("${env.BUILD_NUMBER}")
+             
+        docker.push("${ecrRegistry}:auth-servicev$BUILD_NUMBER")
             
         }
   }
