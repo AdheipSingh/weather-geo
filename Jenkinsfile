@@ -25,7 +25,8 @@ node {
 
      stage('Push image') {
         /* Finally, we'll push the image */
-        docker.withRegistry('https://133607893927.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:aws_ecr')    {
+        docker.withRegistry('https://133607893927.dkr.ecr.ap-southeast-1.amazonaws.com', 'ecr:ap-southeast-1:b06d8bb4-3b9d-4b60-a598-bef19b452274
+')    {
         app.push("${env.BUILD_NUMBER}")
             
         }
